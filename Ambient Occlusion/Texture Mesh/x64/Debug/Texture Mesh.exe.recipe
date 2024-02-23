@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\x64\Debug\Texture Mesh.exe</FullPath>
+      <FullPath>C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\x64\Debug\Texture Mesh.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

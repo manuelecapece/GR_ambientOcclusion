@@ -1,103 +1,103 @@
 ﻿  main.cpp
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\vec3.h(107,15): warning C4244: '/=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\vec3.h(107,15): warning C4244: '/=': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\vec3.h(108,15): warning C4244: '/=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\vec3.h(108,15): warning C4244: '/=': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\vec3.h(109,15): warning C4244: '/=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\vec3.h(109,15): warning C4244: '/=': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\texture.h(60,8): warning C4244: 'inizializzazione': conversione da 'float' a 'int'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\texture.h(60,8): warning C4244: 'inizializzazione': conversione da 'float' a 'int'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\texture.h(61,8): warning C4244: 'inizializzazione': conversione da 'float' a 'int'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\texture.h(61,8): warning C4244: 'inizializzazione': conversione da 'float' a 'int'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\sphere.h(61,25): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\sphere.h(61,25): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\sphere.h(62,34): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\sphere.h(62,34): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\sphere.h(63,27): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\sphere.h(63,27): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\sphere.h(70,25): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\sphere.h(70,25): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\sphere.h(71,34): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\sphere.h(71,34): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\sphere.h(72,27): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\sphere.h(72,27): warning C4244: 'argomento': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\sphere.h(115,27): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\sphere.h(115,27): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\sphere.h(122,27): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\sphere.h(122,27): warning C4244: '=': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\mesh.h(69,41): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\mesh.h(69,41): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\mesh.h(70,39): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\mesh.h(70,39): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\mesh.h(71,42): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\mesh.h(71,42): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\mesh.h(72,26): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\mesh.h(72,26): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\sampler.h(262,23): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\sampler.h(262,23): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\sampler.h(263,23): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\sampler.h(263,23): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\ambient_occluder.h(44,21): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\ambient_occluder.h(44,21): warning C4267: 'inizializzazione': conversione da 'size_t' a 'int'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\ambient_occluder.h(62,37): warning C4305: 'argomento': troncamento da 'double' a 'float'
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\ambient_occluder.h(62,37): warning C4305: 'argomento': troncamento da 'double' a 'float'
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\ambient_occluder.h(62,23): warning C4305: 'argomento': troncamento da 'double' a 'float'
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\ambient_occluder.h(62,23): warning C4305: 'argomento': troncamento da 'double' a 'float'
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(67,32): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\camera.h(67,32): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(68,32): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\camera.h(68,32): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(87,20): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\camera.h(87,20): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(107,20): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\camera.h(107,20): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(135,20): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\camera.h(135,20): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(160,38): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\camera.h(160,38): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(160,60): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\camera.h(160,60): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(171,12): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\camera.h(171,12): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(172,12): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\camera.h(172,12): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
   (compilazione del file di origine 'main.cpp')
   
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\main.cpp(138,42): warning C4305: 'argomento': troncamento da 'double' a 'const float'
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\main.cpp(138,37): warning C4305: 'argomento': troncamento da 'double' a 'const float'
-C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\main.cpp(138,32): warning C4305: 'argomento': troncamento da 'double' a 'const float'
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\main.cpp(138,42): warning C4305: 'argomento': troncamento da 'double' a 'const float'
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\main.cpp(138,37): warning C4305: 'argomento': troncamento da 'double' a 'const float'
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\Texture Mesh\main.cpp(138,32): warning C4305: 'argomento': troncamento da 'double' a 'const float'
   Generazione codice in corso...
-  2 of 1881 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    5 functions had inline decision re-evaluated but remain unchanged
+  1852 of 1881 functions (98.5%) were compiled, the rest were copied from previous compilation.
+    2 functions were new in current compilation
+    2 functions had inline decision re-evaluated but remain unchanged
   Generazione codice terminata
-  Texture Mesh.vcxproj -> C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\x64\Release\Texture Mesh.exe
+  Texture Mesh.vcxproj -> C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion\x64\Release\Texture Mesh.exe
