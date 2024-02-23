@@ -1,0 +1,44 @@
+﻿  main.cpp
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\texture.h(60,8): warning C4244: 'inizializzazione': conversione da 'float' a 'int'. Possibile perdita di dati.
+  (compilazione del file di origine 'main.cpp')
+  
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\texture.h(61,8): warning C4244: 'inizializzazione': conversione da 'float' a 'int'. Possibile perdita di dati.
+  (compilazione del file di origine 'main.cpp')
+  
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\mesh.h(69,41): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+  (compilazione del file di origine 'main.cpp')
+  
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\mesh.h(70,39): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+  (compilazione del file di origine 'main.cpp')
+  
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\mesh.h(71,42): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+  (compilazione del file di origine 'main.cpp')
+  
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\mesh.h(72,26): warning C4267: '=': conversione da 'size_t' a 'int'. Possibile perdita di dati.
+  (compilazione del file di origine 'main.cpp')
+  
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(67,32): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+  (compilazione del file di origine 'main.cpp')
+  
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(68,32): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+  (compilazione del file di origine 'main.cpp')
+  
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(87,20): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+  (compilazione del file di origine 'main.cpp')
+  
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(107,20): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+  (compilazione del file di origine 'main.cpp')
+  
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(132,38): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+  (compilazione del file di origine 'main.cpp')
+  
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(132,60): warning C4244: 'argomento': conversione da 'int' a 'float'. Possibile perdita di dati.
+  (compilazione del file di origine 'main.cpp')
+  
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(143,12): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+  (compilazione del file di origine 'main.cpp')
+  
+C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\Texture Mesh\camera.h(144,12): warning C4244: 'inizializzazione': conversione da 'double' a 'float'. Possibile perdita di dati.
+  (compilazione del file di origine 'main.cpp')
+  
+  Texture Mesh.vcxproj -> C:\git\GitHub\GR_ambientOcclusion\Ambient Occlusion - texture mesh\x64\Debug\Texture Mesh.exe
