@@ -28,8 +28,11 @@ public:
 		cs[1] = random_float();
 		cs[2] = random_float();
 
-		ka = 20.0f + random_float() * 200.0f;
-		kd = 20.0f + random_float() * 200.0f;
+		//ka = 20.0f + random_float() * 200.0f;
+		//kd = 20.0f + random_float() * 200.0f;
+
+		ka = 1.0f;
+		kd = 0.0f;
 	}
 
 	texture* texture;

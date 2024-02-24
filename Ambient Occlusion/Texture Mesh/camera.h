@@ -119,6 +119,34 @@ public:
 		SDL_RenderPresent(renderer);
 	}
 
+	//RENDER PER AMBIENT OCCLUSION + LUCI
+	void parallel_render(hittable_list& world, point_light& worldlight, ambient_occluder& occluder) {
+		vector<color> matrix(image_width * image_height);
+
+		parallel_for(int(0), image_height, [&](int j) {
+			for (int i = 0; i < image_width; ++i) {
+				color pixel_color(0.0f, 0.0f, 0.0f);
+
+				for (int sample = 0; sample < samples_per_pixel; ++sample) {
+					ray r = get_ray(i, j);
+					pixel_color += ray_color(r, world, worldlight,occluder);
+				}
+
+				pixel_color /= samples_per_pixel;
+				matrix[j * image_width + i] = pixel_color;
+			}
+			});
+
+		for (int j = 0; j < image_height; j++) {
+			for (int i = 0; i < image_width; i++) {
+				color pixel_color = matrix[j * image_width + i];
+				setColor(pixel_color[0], pixel_color[1], pixel_color[2]);
+				setPixel(i, j);
+			}
+		}
+		SDL_RenderPresent(renderer);
+	}
+
 	//RENDER PER AMBIENT OCCLUSION
 	void parallel_render_ambient_occlusion(hittable_list& world, ambient_occluder& worldlight) {
 		vector<color> matrix(image_width * image_height);
@@ -129,7 +157,7 @@ public:
 
 				for (int sample = 0; sample < samples_per_pixel; ++sample) {
 					ray r = get_ray(i, j);
-					pixel_color += ray_color_ambient_occlusion(r, world, worldlight, 0);
+					pixel_color += ray_color_ambient_occlusion(r, world, worldlight);
 				}
 
 				pixel_color /= samples_per_pixel;
@@ -192,8 +220,28 @@ private:
 		return (1.0f - t) * color(1.0f, 1.0f, 1.0f) + t * color(0.5f, 0.7f, 1.0f);
 	}
 
+	//RENDER PER AMBIENT OCCLUSION + LUCI
+	color ray_color(ray& r, hittable_list& world, point_light& worldlight, ambient_occluder& occluder) {
+		hit_record rec;
+
+		if (world.hit(r, interval(0, infinity), rec)) {
+			ray shadow_ray(rec.p, unit_vector(worldlight.position - rec.p));
+			float closest_light = (rec.p - worldlight.position).length();
+
+			if (world.hit_shadow(shadow_ray, interval(0.01f, closest_light)))
+				return ambient_occlusion_shading(occluder, r, rec, world);
+			else
+				return phong_shading(worldlight, rec, camera_center);
+		}
+
+		vec3 unit_direction = unit_vector(r.direction());
+		float t = 0.5f * (unit_direction.y() + 1.0f);
+		//return lerp(color(1.0f, 1.0f, 1.0f), color(0.5f, 0.7f, 1.0f), t);
+		return (1.0f - t) * color(1.0f, 1.0f, 1.0f) + t * color(0.5f, 0.7f, 1.0f);
+	}
+
 	//RAY COLOR PER AMBIENT OCCLUSION
-	color ray_color_ambient_occlusion(ray& r, hittable_list& world, ambient_occluder& worldlight, unsigned int depth) {
+	color ray_color_ambient_occlusion(ray& r, hittable_list& world, ambient_occluder& worldlight) {
 		hit_record rec;
 
 		if (world.hit(r, interval(0.0f, infinity), rec))
