@@ -5,11 +5,11 @@ Questo repository contiene il progetto svolto per l'esame del corso di Fondamend
 Il progetto prevede l'implementazione di un framewoork in C++ in grado di realizzare una scena con occlusione ambientale.
 
 ## Istruzioni esecuzione codice
-1)Scaricare Visual Studio 
-2)Scaricare il repository contenente il progetto
-3)Importare il progetto in VS come soluzione
-4)Eseguire il main
-5)Scegliere la scena da renderizzare
+1) Scaricare Visual Studio 
+2) Scaricare il repository contenente il progetto
+3) Importare il progetto in VS come soluzione
+4) Eseguire il main
+5) Scegliere la scena da renderizzare
 
 Il tempo di rendering potrebbe essere elevato.
 
