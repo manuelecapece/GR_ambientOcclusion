@@ -160,6 +160,7 @@
     <ClInclude Include="multiJittered.h" />
     <ClInclude Include="point2.h" />
     <ClInclude Include="point_light.h" />
+    <ClInclude Include="pure_random.h" />
     <ClInclude Include="raster.h" />
     <ClInclude Include="ray.h" />
     <ClInclude Include="regular.h" />

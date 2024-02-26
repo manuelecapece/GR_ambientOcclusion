@@ -110,6 +110,9 @@
     <ClInclude Include="point_light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="pure_random.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

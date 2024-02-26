@@ -219,7 +219,7 @@ private:
 		vec3 pixel_sample = pixel_center + pixel_sample_square();
 
 		point3 ray_origin = camera_center;
-		vec3 ray_direction = pixel_sample - ray_origin;
+		vec3 ray_direction = pixel_sample - ray_origin;		
 
 		return ray(ray_origin, ray_direction);
 	}

@@ -6,17 +6,9 @@
 class multiJittered : public sampler {
 public:
 
-    multiJittered() = default;
-
     explicit multiJittered(const int num_samples);
 
     multiJittered(const multiJittered& r) = default;
-
-    multiJittered(multiJittered&& r) = default;
-
-    multiJittered& operator=(const multiJittered& rhs) = default;
-
-    multiJittered& operator=(multiJittered&& rhs) = default;
 
     virtual multiJittered* clone() const override;
 

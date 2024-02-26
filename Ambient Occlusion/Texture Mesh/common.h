@@ -5,6 +5,7 @@
 #include <limits>
 #include <memory>
 #include <cstdlib>
+#include <random>
 
 // Common Headers
 #include "ray.h"
@@ -19,9 +20,9 @@ using std::sqrt;
 
 // Constants
 
-const float infinity = std::numeric_limits<float>::infinity();
-const float pi = 3.1415926535897932384f;
-const float TWO_PI = 6.2831853071795864769f;
+const float  infinity = std::numeric_limits<float>::infinity();
+const float        pi = 3.1415926535897932384f;
+const float    TWO_PI = 6.2831853071795864769f;
 const double 	invPI = 0.3183098861837906715;
 const double kEpsilon = 0.0001;
 
@@ -35,6 +36,18 @@ inline float random_float() {
   // Returns a random real in [0,1).
   return float(rand() / (RAND_MAX + 1.0f));
 }
+
+////Versione alternativa
+//inline float random_float() {
+//    // Crea un generatore di numeri casuali
+//    static std::mt19937 generator(std::random_device{}());
+//
+//    // Crea una distribuzione uniforme tra 0 e 1
+//    static std::uniform_real_distribution<float> distribution(0.0f, 1.0f);
+//
+//    // Genera e restituisce un numero casuale in virgola mobile nell'intervallo [0,1)
+//    return distribution(generator);
+//}
 
 inline float random_float(float min, float max) {
   // Returns a random real in [min,max).

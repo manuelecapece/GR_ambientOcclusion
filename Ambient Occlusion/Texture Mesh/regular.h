@@ -6,19 +6,9 @@
 class regular : public sampler {
 public:
 
-    regular() = delete;
-
     explicit regular(const int num);
 
-    ~regular() = default;
-
     regular(const regular& r) = default;
-
-    regular(regular&& r) = default;
-
-    regular& operator=(const regular& rhs) = default;
-
-    regular& operator=(regular&& rhs) = default;
 
     virtual regular* clone() const override;
 
@@ -26,8 +16,6 @@ private:
 
     virtual void generate_samples() override;
 };
-
-#include "regular.h"
 
 regular::regular(const int num) : sampler(num) { generate_samples(); }
 
