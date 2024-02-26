@@ -94,6 +94,9 @@ public:
 
 	void parallel_render(hittable_list& world, point_light& worldlight) {
 		vector<color> matrix(image_width * image_height);
+		float pixel_i = 0;
+		float tot_pixel = image_height * image_width;
+		int percentuale_render = 0;
 
 		parallel_for(int(0), image_height, [&](int j) {
 			for (int i = 0; i < image_width; ++i) {
@@ -102,6 +105,13 @@ public:
 				for (int sample = 0; sample < samples_per_pixel; ++sample) {
 					ray r = get_ray(i, j);
 					pixel_color += ray_color(r, world, worldlight);
+				}
+
+				pixel_i = pixel_i + 1;
+				int newPercentualeRender = static_cast<int> ((pixel_i / tot_pixel) * 100);
+				if (percentuale_render != newPercentualeRender) {
+					percentuale_render = newPercentualeRender;
+					cout << "rendering: " << percentuale_render << "%" << endl;
 				}
 
 				pixel_color /= samples_per_pixel;
@@ -122,6 +132,9 @@ public:
 	//RENDER PER AMBIENT OCCLUSION + LUCI
 	void parallel_render(hittable_list& world, point_light& worldlight, ambient_occluder& occluder) {
 		vector<color> matrix(image_width * image_height);
+		float pixel_i = 0;
+		float tot_pixel = image_height * image_width;
+		int percentuale_render = 0;
 
 		parallel_for(int(0), image_height, [&](int j) {
 			for (int i = 0; i < image_width; ++i) {
@@ -130,6 +143,13 @@ public:
 				for (int sample = 0; sample < samples_per_pixel; ++sample) {
 					ray r = get_ray(i, j);
 					pixel_color += ray_color(r, world, worldlight,occluder);
+				}
+
+				pixel_i = pixel_i + 1;
+				int newPercentualeRender = static_cast<int> ((pixel_i / tot_pixel) * 100);
+				if (percentuale_render != newPercentualeRender) {
+					percentuale_render = newPercentualeRender;
+					cout << "rendering: " << percentuale_render << "%" << endl;
 				}
 
 				pixel_color /= samples_per_pixel;
@@ -150,6 +170,9 @@ public:
 	//RENDER PER AMBIENT OCCLUSION
 	void parallel_render_ambient_occlusion(hittable_list& world, ambient_occluder& worldlight) {
 		vector<color> matrix(image_width * image_height);
+		float pixel_i = 0;
+		float tot_pixel = image_height * image_width;
+		int percentuale_render = 0;
 
 		parallel_for(int(0), image_height, [&](int j) {
 			for (int i = 0; i < image_width; ++i) {
@@ -158,6 +181,13 @@ public:
 				for (int sample = 0; sample < samples_per_pixel; ++sample) {
 					ray r = get_ray(i, j);
 					pixel_color += ray_color_ambient_occlusion(r, world, worldlight);
+				}
+
+				pixel_i = pixel_i + 1;
+				int newPercentualeRender = static_cast<int> ((pixel_i / tot_pixel) * 100);
+				if (percentuale_render != newPercentualeRender) {
+					percentuale_render = newPercentualeRender;
+					cout << "rendering: " << percentuale_render << "%" << endl;
 				}
 
 				pixel_color /= samples_per_pixel;
@@ -256,6 +286,7 @@ private:
 		}
 
 	}
+
 };
 
 #endif

@@ -204,16 +204,16 @@ void sphereRegular(camera cam, hittable_list world) {
 void multipleObjects(camera cam, hittable_list world) {
 
 	//Colori texture
-	texture* verde = new image_texture("../models/verde.jpg");
+	texture* verde  = new image_texture("../models/verde.jpg");
 	texture* giallo = new image_texture("../models/giallo.jpg");
-	texture* rosso = new image_texture("../models/rosso.jpg");
-	texture* blu = new image_texture("../models/blu.jpg");
+	texture* rosso  = new image_texture("../models/rosso.jpg");
+	texture* blu    = new image_texture("../models/blu.jpg");
 	texture* grigio = new image_texture("../models/grigio.jpg");
 	texture* bianco = new image_texture("../models/grigio.jpg");
 
 	//Sampler
 	int num_samples = 64;
-	float min_amount = 0.45f;
+	float min_amount = 0.25f;
 	multiJittered* sampler_ptr = new multiJittered(num_samples);
 
 	//Luce ambient occluder
@@ -223,7 +223,7 @@ void multipleObjects(camera cam, hittable_list world) {
 
 	//Cube base
 	mesh* cube = new mesh("../models/cube.obj", "../models/");
-	material* m_cube = new material(getColor("lightgray"), getColor("lightgray"), getColor("white"), 0.8f, 0.0f);
+	material* m_cube = new material(getColor("white"), getColor("white"), getColor("white"), 0.8f, 0.0f);
 	auto instance_ptr_cubo = make_shared<instance>(cube, m_cube);
 	instance_ptr_cubo->scale(40.0, 1.0, 40.0);
 	instance_ptr_cubo->translate(0.0f, -0.5f, 0.0f);
@@ -265,11 +265,11 @@ void multipleObjects(camera cam, hittable_list world) {
 	cam.lookfrom = point3(1, 2, 3.5);
 	cam.lookat = point3(-0.5, 1.2, 0);
 
-	cam.samples_per_pixel = 1;
+	cam.samples_per_pixel = num_samples;
 	cam.initialize();
 
-	cam.parallel_render(world, *worldlight);
-	//cam.parallel_render_ambient_occlusion(world, *occluder_ptr);
+	//cam.parallel_render(world, *worldlight);
+	cam.parallel_render_ambient_occlusion(world, *occluder_ptr);
 	SDL_RenderPresent(renderer);
 	string path = "../../screenshot/multipleObjects/num_samples-" + to_string(num_samples) +"-min_amount-"+ to_string(min_amount) + ".bmp";
 	saveScreenshotBMP(path);
@@ -286,7 +286,7 @@ void city(camera cam, hittable_list world) {
 	texture* bianco = new image_texture("../models/grigio.jpg");
 
 	//Sampler
-	int num_samples = 1;
+	int num_samples = 64;
 	float min_amount = 0.25f;
 	multiJittered* sampler_ptr = new multiJittered(num_samples);
 
@@ -296,7 +296,7 @@ void city(camera cam, hittable_list world) {
 	occluder_ptr->set_sampler(sampler_ptr);
 
 	//Luce point_light
-	point3 light_position(-1.0f, 4, 2.0f);
+	point3 light_position(-2.0f, 20, -20.0f);
 	point_light* worldlight = new point_light(light_position, getColor("darkgray"), getColor("lightgray"), getColor("black"));
 	world.add_lights(worldlight);
 
@@ -326,7 +326,7 @@ void city(camera cam, hittable_list world) {
 	}
 
 	for (int a = -11; a < 5; a++) {
-		for (int b = -11; b < 1; b++) {
+		for (int b = -11; b < 0; b++) {
 			point3 center(a + 0.9f * random_float(), 0.5f, b + 0.9f * random_float());
 			material* m_randomCube = new material();
 			instance_ptr = make_shared<instance>(cube, m_randomCube);
@@ -338,7 +338,7 @@ void city(camera cam, hittable_list world) {
 	}
 
 	for (int a = -11; a < 5; a++) {
-		for (int b = -11; b < -5; b++) {
+		for (int b = -11; b < -7; b++) {
 			point3 center(a + 0.9f * random_float(), 1.0f, b + 0.9f * random_float());
 			material* m_randomCube = new material();
 			instance_ptr = make_shared<instance>(cube, m_randomCube);
@@ -357,6 +357,7 @@ void city(camera cam, hittable_list world) {
 
 	//cam.parallel_render(world, *worldlight);
 	cam.parallel_render_ambient_occlusion(world, *occluder_ptr);
+	//cam.parallel_render(world, *worldlight, *occluder_ptr);
 	SDL_RenderPresent(renderer);
 	string path = "../../screenshot/city/num_samples-" + to_string(num_samples) + "-min_amount-" + to_string(min_amount) + ".bmp";
 	saveScreenshotBMP(path);
@@ -374,8 +375,8 @@ void multipleLights(camera cam, hittable_list world) {
 	texture* bianco = new image_texture("../models/grigio.jpg");
 
 	//Sampler
-	int num_samples = 1;
-	float min_amount = 0.25f;
+	int num_samples = 4;
+	float min_amount = 0.0f;
 	multiJittered* sampler_ptr = new multiJittered(num_samples);
 	//regular* sampler_ptr = new regular(num_samples);
 
@@ -447,11 +448,105 @@ void multipleLights(camera cam, hittable_list world) {
 	cam.samples_per_pixel = num_samples;
 	cam.initialize();
 
-	//cam.parallel_render(world, *worldlight);
-	cam.parallel_render(world, *worldlight, *occluder_ptr);
+	cam.parallel_render(world, *worldlight);
+	//cam.parallel_render(world, *worldlight, *occluder_ptr);
 	SDL_RenderPresent(renderer);
-	string path = "../../screenshot/multipleLights/num_samples-" + to_string(num_samples) + ".bmp";
+	string path = "../../screenshot/multipleLights/num_samples-" + to_string(num_samples) + "-min_amount-" + to_string(min_amount) + ".bmp";
 	saveScreenshotBMP(path);
+}
+
+string test(camera cam, hittable_list world) {
+
+	//Definisco i colori
+	color red        = color(1.00f, 0.00f, 0.00f);
+	color green      = color(0.00f, 1.00f, 0.00f);
+	color blue       = color(0.00f, 0.00f, 1.00f);
+	color gray       = color(0.50f, 0.50f, 0.50f);
+	color white      = color(1.00f, 1.00f, 1.00f);
+	color black      = color(0.00f, 0.00f, 0.00f);
+	color darkgray   = color(0.25f, 0.25f, 0.25f);
+	color lightgray  = color(0.75f, 0.75f, 0.75f);
+	color slategray  = color(0.40f, 0.50f, 0.56f);
+	color magenta    = color(1.00f, 0.00f, 1.00f);
+	color cyan       = color(0.00f, 1.00f, 1.00f);
+	color brown      = color(0.60f, 0.40f, 0.12f);
+	color yellow     = color(1.00f, 1.00f, 0.00f);
+	color darkyellow = color(0.65f, 0.65f, 0.00f);
+
+	//Sampler
+	int num_samples = 64;
+	multiJittered* sampler_ptr = new multiJittered(num_samples);
+	//regular* sampler_ptr = new regular(num_samples);
+
+	//Luce ambient occluder
+	float min_amount = 0.0;
+	ambient_occluder* occluder_ptr = new ambient_occluder(white,white,white,1.0);
+	occluder_ptr->set_min_amount(min_amount);
+	occluder_ptr->set_sampler(sampler_ptr);
+
+	//Piano
+	point3 p = point3(0.0f, 0.0f, 0.0f);
+	vec3 normal = vec3(0.0f, 1.0f, 0.0f);
+	plane* piano = new plane(p,normal);
+	texture* colore_piano = new image_texture("../models/grigio.jpg");
+	material* m_piano = new material(white, white, white, 0.8f, 0.0f);
+	auto instance_ptr_piano = make_shared<instance>(piano, m_piano);
+	instance_ptr_piano->translate(0.0f, 0.0f, 0.0f);
+	m_piano->texture = colore_piano;
+	world.add(instance_ptr_piano);
+
+	////Cube base
+	//mesh* cube = new mesh("../models/cube.obj", "../models/");
+	//texture* colore_cubo = new image_texture("../models/grigio.jpg");
+	//material* m_cube = new material(white, white, white, 0.8f, 0.0f);
+	//auto instance_ptr_cubo = make_shared<instance>(cube, m_cube);
+	//instance_ptr_cubo->scale(40.0, 1.0, 40.0);
+	//instance_ptr_cubo->translate(0.0f, -0.5f, 0.0f);
+	//m_cube->texture = colore_cubo;
+	//world.add(instance_ptr_cubo);
+
+	//Sfera principale
+	sphere* sfera = new sphere(); //posizione (0,0,0) e raggio 1.0
+	material* m_sfera = new material(yellow, yellow, white, 0.8f, 0.0f);
+	auto instace_ptr_sfera = make_shared<instance>(sfera, m_sfera);
+	texture* colore_sfera = new image_texture("../models/giallo.jpg");
+	instace_ptr_sfera->translate(0.0f, 1.0f, 0.0f);
+	m_sfera->texture = colore_sfera;
+	world.add(instace_ptr_sfera);
+
+	////Sfera principale obj
+	//mesh* sfera_obj = new mesh("../models/sfera.obj", "../models/");
+	//texture* colore_sfera_obj = new image_texture("../models/giallo.jpg");
+	//material* m_sfera_obj = new material(yellow, yellow, white, 0.8f, 0.0f);
+	//auto instance_ptr_sfera_obj = make_shared<instance>(sfera_obj, m_sfera_obj);
+	//instance_ptr_sfera_obj->scale(0.3, 0.3, 0.3);
+	////instance_ptr_sfera_obj->translate(0.0f, -0.5f, 0.0f);
+	//m_sfera_obj->texture = colore_sfera_obj;
+	//world.add(instance_ptr_sfera_obj);
+	
+	cam.lookfrom = point3(0, 5, 10);
+	cam.lookat = point3(0, 0.5, 0);
+	cam.samples_per_pixel = num_samples;
+	cam.initialize();
+
+	cam.parallel_render_ambient_occlusion(world, *occluder_ptr);
+	SDL_RenderPresent(renderer);
+
+	string path = "../../screenshot/test/num_samples-" + to_string(num_samples) + "-min_amount-" + to_string(min_amount);
+
+	return path;
+}
+
+void printMenu() {
+	cout << '\n';
+	cout << "--- Menu" << endl;
+	cout << "* Press a for random sampling sphere-plane" << endl;
+	cout << "* Press b for regular sampling sphere-plane" << endl;
+	cout << "* Press c for multiple objects scene" << endl;
+	cout << "* Press d for multiple lights scene" << endl;
+	cout << "* Press e for ambient occlusion city scene" << endl;
+	cout << "* Press z test scene" << endl;
+	cout << "* Press s for make a screenshot" << endl;
 }
 
 int main(int argc, char* argv[])
@@ -464,13 +559,7 @@ int main(int argc, char* argv[])
 	cam.samples_per_pixel = 4;
 	cam.vfov = 20;
 
-	cout << "--- Menu" << endl;
-	cout << "* Press a for random sampling sphere-plane" << endl;
-	cout << "* Press b for regular sampling sphere-plane" << endl;
-	cout << "* Press c for multiple objects scene" << endl;
-	cout << "* Press d for multiple lights scene" << endl;
-	cout << "* Press e for ambient occlusion city scene" << endl;
-	cout << "* Press s for make a screenshot" << endl;
+	printMenu();
 
 	cam.initialize();
 	if (init(cam.image_width, cam.image_height) == 1) {
@@ -480,6 +569,7 @@ int main(int argc, char* argv[])
 
 	SDL_Event event;
 	bool quit = false;
+	double dif;
 
 	while (SDL_PollEvent(&event) || (!quit)) {
 
@@ -501,22 +591,54 @@ int main(int argc, char* argv[])
 
 			case SDLK_a:
 				sphereMultiJittered(cam, world);
+				printMenu();
 				break;
 
 			case SDLK_b:
 				sphereRegular(cam, world);
+				printMenu();
 				break;
 
 			case SDLK_c:
+				time_t start, end;
+				time(&start);
 				multipleObjects(cam, world);
+				time(&end);
+				dif = difftime(end, start);
+				cout << "\n" << "Rendering time: " << dif << "\n";
+				printMenu();
 				break;
 
 			case SDLK_d:
+				start, end;
+				time(&start);
 				multipleLights(cam, world);
+				time(&end);
+				dif = difftime(end, start);
+				cout << "\n" << "Rendering time: " << dif << "\n";
+				printMenu();
 				break;
 
 			case SDLK_e:
+				start, end;
+				time(&start);
 				city(cam, world);
+				time(&end);
+				dif = difftime(end, start);
+				cout << "\n" << "Rendering time: " << dif << "\n";
+				printMenu();
+				break;
+
+			case SDLK_z:
+				start, end;
+				time(&start);
+				string path = test(cam, world);
+				time(&end);
+				dif = difftime(end, start);
+				cout << "\n" << "Rendering time: " << dif << "\n";
+				path = path + "-rtime-" + to_string(dif) + ".bmp";
+				saveScreenshotBMP(path);
+				printMenu();
 				break;
 
 			}
