@@ -29,6 +29,6 @@ The project involves the implementation of a C++ framework capable of creating a
 Rendering time may be high.
 
 
-![Screen render finale](https://github.com/manuelecapece/GR_ambientOcclusion/blob/main/screenshot/sphereMultiJittered/num_samples-64.bmp)
+![Screen render finale](https://github.com/manuelecapece/GR_ambientOcclusion/blob/main/screenshot/sphereMultiJittered/num_samples-256.bmp)
 
 
