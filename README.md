@@ -8,6 +8,6 @@ Il progetto prevede l'implementazione di un framewoork in C++ in grado di realiz
 
 
 
-![Screen render finale](https://github.com/manuelecapece/FrenchElectionDataAnalysis/blob/main/AnalisiVisuali/carburanteGiornoPerGiorno.jpg)
+![Screen render finale](https://github.com/manuelecapece/GR_ambientOcclusion/blob/main/screenshot/sphereMultiJittered/num_samples-64.bmp)
 
 
