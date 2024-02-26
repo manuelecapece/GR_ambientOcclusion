@@ -1,5 +1,3 @@
-
-
 #include "sampler.h"
 #include "point2.h"
 #include "common.h"
@@ -11,10 +9,6 @@ public:
     multiJittered() = default;
 
     explicit multiJittered(const int num_samples);
-
-    explicit multiJittered(const int num_samples, const int m);
-
-    ~multiJittered() = default;
 
     multiJittered(const multiJittered& r) = default;
 
@@ -32,8 +26,6 @@ private:
 };
 
 multiJittered::multiJittered(const int num_samples) : sampler(num_samples) { generate_samples(); }
-
-multiJittered::multiJittered(const int num_samples, const int m) : sampler(num_samples, m) { generate_samples(); }
 
 multiJittered* multiJittered::clone() const { return new multiJittered(*this); }
 

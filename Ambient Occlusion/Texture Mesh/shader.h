@@ -72,3 +72,30 @@ color ambient_occlusion_shading(ambient_occluder& light, ray& r, hit_record& hr,
 
 	return L;
 }
+
+color phong_shading(point_light& light, ambient_occluder& occluder, ray& r, hit_record& hr, hittable_list& world, point3& camera_pos) {
+	color ambient(0.0f, 0.0f, 0.0f);
+	color diffuse(0.0f, 0.0f, 0.0f);
+	color specular(0.0f, 0.0f, 0.0f);
+
+	ambient = ambient_occlusion_shading(occluder, r, hr, world);
+
+	vec3 L = unit_vector(light.position - hr.p);
+	float LDotN = max(dot(L, hr.normal), 0.0f);
+
+	if (LDotN > 0.0f) {
+		//diffuse = hr.m->kd * light.diffuse * LDotN;
+		diffuse = hr.m->texture->value(hr.u, hr.v, hr.p) * light.diffuse * LDotN;
+
+		vec3 R = reflect(L, hr.normal);
+
+		vec3 V = unit_vector(camera_pos - hr.p);
+		float VDotR = std::pow(max(dot(V, R), 0.0f), hr.m->ka);
+
+		specular = hr.m->cs * light.specular * VDotR;
+
+		return ambient + diffuse + specular;
+	}
+	else
+		return ambient;
+}

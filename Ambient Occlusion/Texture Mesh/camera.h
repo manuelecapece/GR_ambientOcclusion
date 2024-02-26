@@ -250,7 +250,7 @@ private:
 		return (1.0f - t) * color(1.0f, 1.0f, 1.0f) + t * color(0.5f, 0.7f, 1.0f);
 	}
 
-	//RENDER PER AMBIENT OCCLUSION + LUCI
+	//RAY COLOR PER AMBIENT OCCLUSION + LUCI
 	color ray_color(ray& r, hittable_list& world, point_light& worldlight, ambient_occluder& occluder) {
 		hit_record rec;
 
@@ -261,12 +261,11 @@ private:
 			if (world.hit_shadow(shadow_ray, interval(0.01f, closest_light)))
 				return ambient_occlusion_shading(occluder, r, rec, world);
 			else
-				return phong_shading(worldlight, rec, camera_center);
+				return phong_shading(worldlight, occluder, r, rec, world, camera_center);
 		}
 
 		vec3 unit_direction = unit_vector(r.direction());
 		float t = 0.5f * (unit_direction.y() + 1.0f);
-		//return lerp(color(1.0f, 1.0f, 1.0f), color(0.5f, 0.7f, 1.0f), t);
 		return (1.0f - t) * color(1.0f, 1.0f, 1.0f) + t * color(0.5f, 0.7f, 1.0f);
 	}
 
