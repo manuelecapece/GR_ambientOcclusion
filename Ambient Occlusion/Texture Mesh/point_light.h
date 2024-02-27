@@ -2,6 +2,7 @@
 #include "vec3.h"
 #include "color.h"
 #include "light.h"
+#include "common.h"
 
 
 class point_light : public light {
@@ -16,3 +17,4 @@ public:
 		specular = s;
 	}
 };
+

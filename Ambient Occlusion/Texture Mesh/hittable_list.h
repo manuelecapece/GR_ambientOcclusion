@@ -15,7 +15,7 @@ using std::make_shared;
 class hittable_list : public hittable {
 public:
   std::vector<shared_ptr<hittable>> objects;
-  vector<light*> lights;
+  vector<point_light*> lights;
 
   hittable_list() {}
   hittable_list(shared_ptr<hittable> object) { add(object); }
@@ -26,7 +26,7 @@ public:
     objects.push_back(object);
   }
 
-  void add_lights(light* new_light) {
+  void add_lights(point_light* new_light) {
       lights.push_back(new_light);
   }
 

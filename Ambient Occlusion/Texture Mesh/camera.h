@@ -12,6 +12,7 @@
 #include "light.h"
 #include "raster.h"
 #include "shader.h"
+#include "spot_light.h"
 
 using namespace std;
 using namespace concurrency;
@@ -72,7 +73,7 @@ public:
 		pixel00_loc = viewport_upper_left + 0.5f * (pixel_delta_u + pixel_delta_v);
 	}
 
-
+	
 	void render(hittable_list& world, point_light& worldlight) {
 		for (int j = 0; j < image_height; ++j) {
 			std::clog << "\rScanlines remaining: " << (image_height - j) << ' ' << std::flush;
@@ -92,7 +93,46 @@ public:
 		SDL_RenderPresent(renderer);
 	}
 
+	//Render per point_light
 	void parallel_render(hittable_list& world, point_light& worldlight) {
+		vector<color> matrix(image_width * image_height);
+		float pixel_i = 0;
+		float tot_pixel = image_height * image_width;
+		int percentuale_render = 0;
+
+		parallel_for(int(0), image_height, [&](int j) {
+			for (int i = 0; i < image_width; ++i) {
+				color pixel_color(0.0f, 0.0f, 0.0f);
+
+				for (int sample = 0; sample < samples_per_pixel; ++sample) {
+					ray r = get_ray(i, j);
+					pixel_color += ray_color(r, world, worldlight);
+				}
+
+				pixel_i = pixel_i + 1;
+				int newPercentualeRender = static_cast<int> ((pixel_i / tot_pixel) * 100);
+				if (percentuale_render != newPercentualeRender) {
+					percentuale_render = newPercentualeRender;
+					cout << "rendering: " << percentuale_render << "%" << endl;
+				}
+
+				pixel_color /= samples_per_pixel;
+				matrix[j * image_width + i] = pixel_color;
+			}
+			});
+
+		for (int j = 0; j < image_height; j++) {
+			for (int i = 0; i < image_width; i++) {
+				color pixel_color = matrix[j * image_width + i];
+				setColor(pixel_color[0], pixel_color[1], pixel_color[2]);
+				setPixel(i, j);
+			}
+		}
+		SDL_RenderPresent(renderer);
+	}
+
+	//Render per spot_light
+	void parallel_render(hittable_list& world, spot_light& worldlight) {
 		vector<color> matrix(image_width * image_height);
 		float pixel_i = 0;
 		float tot_pixel = image_height * image_width;
@@ -143,6 +183,44 @@ public:
 				for (int sample = 0; sample < samples_per_pixel; ++sample) {
 					ray r = get_ray(i, j);
 					pixel_color += ray_color(r, world, worldlight,occluder);
+				}
+
+				pixel_i = pixel_i + 1;
+				int newPercentualeRender = static_cast<int> ((pixel_i / tot_pixel) * 100);
+				if (percentuale_render != newPercentualeRender) {
+					percentuale_render = newPercentualeRender;
+					cout << "rendering: " << percentuale_render << "%" << endl;
+				}
+
+				pixel_color /= samples_per_pixel;
+				matrix[j * image_width + i] = pixel_color;
+			}
+			});
+
+		for (int j = 0; j < image_height; j++) {
+			for (int i = 0; i < image_width; i++) {
+				color pixel_color = matrix[j * image_width + i];
+				setColor(pixel_color[0], pixel_color[1], pixel_color[2]);
+				setPixel(i, j);
+			}
+		}
+		SDL_RenderPresent(renderer);
+	}
+
+	//RENDER PER AMBIENT OCCLUSION + spot_light
+	void parallel_render(hittable_list& world, spot_light& worldlight, ambient_occluder& occluder) {
+		vector<color> matrix(image_width * image_height);
+		float pixel_i = 0;
+		float tot_pixel = image_height * image_width;
+		int percentuale_render = 0;
+
+		parallel_for(int(0), image_height, [&](int j) {
+			for (int i = 0; i < image_width; ++i) {
+				color pixel_color(0.0f, 0.0f, 0.0f);
+
+				for (int sample = 0; sample < samples_per_pixel; ++sample) {
+					ray r = get_ray(i, j);
+					pixel_color += ray_color(r, world, worldlight, occluder);
 				}
 
 				pixel_i = pixel_i + 1;
@@ -231,6 +309,7 @@ private:
 		return (px * pixel_delta_u) + (py * pixel_delta_v);
 	}
 
+	//Ray color per point_light
 	color ray_color(const ray& r, hittable_list& world, point_light& worldlight) {
 		hit_record rec;
 
@@ -250,8 +329,47 @@ private:
 		return (1.0f - t) * color(1.0f, 1.0f, 1.0f) + t * color(0.5f, 0.7f, 1.0f);
 	}
 
+	//Ray color per spot_light
+	color ray_color(const ray& r, hittable_list& world, spot_light& worldlight) {
+		hit_record rec;
+
+		if (world.hit(r, interval(0, infinity), rec)) {
+			ray shadow_ray(rec.p, unit_vector(worldlight.position - rec.p));
+			float closest_light = (rec.p - worldlight.position).length();
+
+			if (world.hit_shadow(shadow_ray, interval(0.01f, closest_light)))
+				return ambient_shading(worldlight, rec);
+			else
+				return phong_shading_spot(worldlight, rec, camera_center);
+		}
+
+		vec3 unit_direction = unit_vector(r.direction());
+		float t = 0.5f * (unit_direction.y() + 1.0f);
+		//return lerp(color(1.0f, 1.0f, 1.0f), color(0.5f, 0.7f, 1.0f), t);
+		return (1.0f - t) * color(1.0f, 1.0f, 1.0f) + t * color(0.5f, 0.7f, 1.0f);
+	}
+
 	//RAY COLOR PER AMBIENT OCCLUSION + LUCI
 	color ray_color(ray& r, hittable_list& world, point_light& worldlight, ambient_occluder& occluder) {
+		hit_record rec;
+
+		if (world.hit(r, interval(0, infinity), rec)) {
+			ray shadow_ray(rec.p, unit_vector(worldlight.position - rec.p));
+			float closest_light = (rec.p - worldlight.position).length();
+
+			if (world.hit_shadow(shadow_ray, interval(0.01f, closest_light)))
+				return ambient_occlusion_shading(occluder, r, rec, world);
+			else
+				return phong_shading(worldlight, occluder, r, rec, world, camera_center);
+		}
+
+		vec3 unit_direction = unit_vector(r.direction());
+		float t = 0.5f * (unit_direction.y() + 1.0f);
+		return (1.0f - t) * color(1.0f, 1.0f, 1.0f) + t * color(0.5f, 0.7f, 1.0f);
+	}
+
+	//RAY COLOR PER AMBIENT OCCLUSION + spot_light
+	color ray_color(ray& r, hittable_list& world, spot_light& worldlight, ambient_occluder& occluder) {
 		hit_record rec;
 
 		if (world.hit(r, interval(0, infinity), rec)) {

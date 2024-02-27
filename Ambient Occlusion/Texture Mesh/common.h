@@ -25,6 +25,7 @@ const float        pi = 3.1415926535897932384f;
 const float    TWO_PI = 6.2831853071795864769f;
 const double 	invPI = 0.3183098861837906715;
 const double kEpsilon = 0.0001;
+const float Deg2Rad  = 3.1415926f / 180.0f;
 
 // Utility Functions
 
