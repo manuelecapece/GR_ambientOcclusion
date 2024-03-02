@@ -472,7 +472,6 @@ void spotLight(camera cam, hittable_list world) {
 	point3 light_positionS(0, 3.5, -1.0);
 	vec3 light_direction = light_positionS - point3(0.0f, 0.0f, -1.0f);
 	spot_light* spotLight = new spot_light(light_positionS, light_direction, 70.0f, getColor("darkgray"), getColor("lightgray"), getColor("lightgray"));
-	//world.add_lights(spotLight);
 
 	//Cube base
 	mesh* cube = new mesh("../models/cube.obj", "../models/");
