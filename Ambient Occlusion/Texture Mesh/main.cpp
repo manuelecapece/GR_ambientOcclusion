@@ -24,7 +24,7 @@
 #include "multiJittered.h"
 #include "pure_random.h"
 #include "ambient_occluder.h"
-#include "spot_light.h"
+#include "light.h"
 
 using namespace std;
 
@@ -146,7 +146,7 @@ void sphereMultiJittered(camera cam, hittable_list world) {
 		occluder_ptr->set_sampler(sampler_ptr);
 
 		cam.initialize();
-		cam.parallel_render_ambient_occlusion(world, *occluder_ptr);
+		cam.parallel_render(world, *occluder_ptr);
 		SDL_RenderPresent(renderer);
 
 		string path = "../../screenshot/sphereMultiJittered/num_samples-" + to_string(num_samples) + ".bmp";
@@ -195,7 +195,7 @@ void sphereRegular(camera cam, hittable_list world) {
 		occluder_ptr->set_sampler(sampler_ptr);
 
 		cam.initialize();
-		cam.parallel_render_ambient_occlusion(world, *occluder_ptr);
+		cam.parallel_render(world, *occluder_ptr);
 		SDL_RenderPresent(renderer);
 
 		string path = "../../screenshot/sphereRegular/num_samples-" + to_string(num_samples) + ".bmp";
@@ -265,7 +265,7 @@ void multipleObjects(camera cam, hittable_list world) {
 	cam.samples_per_pixel = num_samples;
 	cam.initialize();
 
-	cam.parallel_render_ambient_occlusion(world, *occluder_ptr);
+	cam.parallel_render(world, *occluder_ptr);
 	SDL_RenderPresent(renderer);
 	string path = "../../screenshot/multipleObjects/num_samples-" + to_string(num_samples) +"-min_amount-"+ to_string(min_amount) + ".bmp";
 	saveScreenshotBMP(path);
@@ -294,7 +294,7 @@ void city(camera cam, hittable_list world) {
 	////Luce point_light
 	//point3 light_position(-2.0f, 20, -20.0f);
 	//point_light* worldlight = new point_light(light_position, getColor("darkgray"), getColor("lightgray"), getColor("black"));
-	//world.add_lights(worldlight);
+	//world.addLight(worldlight);
 
 	//Cube base
 	mesh* cube = new mesh("../models/cube.obj", "../models/");
@@ -351,8 +351,7 @@ void city(camera cam, hittable_list world) {
 	cam.samples_per_pixel = num_samples;
 	cam.initialize();
 
-	cam.parallel_render_ambient_occlusion(world, *occluder_ptr);
-	//cam.parallel_render(world, *worldlight, *occluder_ptr);
+	cam.parallel_render(world, *occluder_ptr);
 	SDL_RenderPresent(renderer);
 	string path = "../../screenshot/city/num_samples-" + to_string(num_samples) + "-min_amount-" + to_string(min_amount) + ".bmp";
 	saveScreenshotBMP(path);
@@ -370,7 +369,7 @@ void pointLight(camera cam, hittable_list world) {
 	texture* bianco = new image_texture("../models/grigio.jpg");
 
 	//Sampler
-	int num_samples = 1;
+	int num_samples = 64;
 	float min_amount = 0.25f;
 	multiJittered* sampler_ptr = new multiJittered(num_samples);
 
@@ -382,6 +381,7 @@ void pointLight(camera cam, hittable_list world) {
 	//Luce point_light
 	point3 light_position(-1.0f, 4, 2.0f);
 	point_light* pointLight = new point_light(light_position, getColor("darkgray"), getColor("lightgray"), getColor("black"));
+	world.addLight(pointLight);
 
 	//Cube base
 	mesh* cube = new mesh("../models/cube.obj", "../models/");
@@ -441,8 +441,8 @@ void pointLight(camera cam, hittable_list world) {
 	cam.samples_per_pixel = num_samples;
 	cam.initialize();
 
-	//cam.parallel_render(world, *pointLight);
-	cam.parallel_render(world, *pointLight, *occluder_ptr);
+	//cam.parallel_render(world);
+	cam.parallel_render(world,*occluder_ptr);
 	SDL_RenderPresent(renderer);
 	string path = "../../screenshot/pointLight/num_samples-" + to_string(num_samples) + "-min_amount-" + to_string(min_amount) + ".bmp";
 	saveScreenshotBMP(path);
@@ -472,6 +472,7 @@ void spotLight(camera cam, hittable_list world) {
 	point3 light_positionS(0, 3.5, -1.0);
 	vec3 light_direction = light_positionS - point3(0.0f, 0.0f, -1.0f);
 	spot_light* spotLight = new spot_light(light_positionS, light_direction, 70.0f, getColor("darkgray"), getColor("lightgray"), getColor("lightgray"));
+	world.addLight(spotLight);
 
 	//Cube base
 	mesh* cube = new mesh("../models/cube.obj", "../models/");
@@ -532,8 +533,8 @@ void spotLight(camera cam, hittable_list world) {
 	cam.samples_per_pixel = num_samples;
 	cam.initialize();
 
-	//cam.parallel_render(world, *spotLight);
-	cam.parallel_render(world, *spotLight, *occluder_ptr);
+	//cam.parallel_render(world);
+	cam.parallel_render(world, *occluder_ptr);
 	SDL_RenderPresent(renderer);
 	string path = "../../screenshot/spotLight/num_samples-" + to_string(num_samples) + "-min_amount-" + to_string(min_amount) + ".bmp";
 	saveScreenshotBMP(path);
@@ -564,26 +565,26 @@ string test(camera cam, hittable_list world) {
 	//pure_random* sampler_ptr = new pure_random(num_samples);
 
 	//Luce ambient occluder
-	float min_amount = 0.25;
+	float min_amount = 0.0;
 	ambient_occluder* occluder_ptr = new ambient_occluder(white,white,white,1.0);
 	occluder_ptr->set_min_amount(min_amount);
 	occluder_ptr->set_sampler(sampler_ptr);
 
 	//Luce point_light
 	point3 light_position(0.0f, 6, 0.0f);
-	point_light* worldlight = new point_light(light_position, getColor("darkgray"), getColor("lightgray"), getColor("black"));
-	world.add_lights(worldlight);
+	point_light* pointLight = new point_light(light_position, getColor("darkgray"), getColor("lightgray"), getColor("white"));
+	//world.addLight(pointLight);
 
 	//Luce spot_light
-	point3 light_positionS(0, 10, 0);
-	vec3 light_direction = light_positionS - point3(0.0f, 0.0f, 0.0f);
-	spot_light* spotLight = new spot_light(light_positionS, light_direction, 20.0f, getColor("darkgray"), getColor("lightgray"), getColor("black"));
-	//world.add_lights(spotLight);
+	point3 light_position2(0, 10, 0);
+	vec3 light_direction = light_position2 - point3(0.0f, 0.0f, 0.0f);
+	spot_light* spotLight = new spot_light(light_position2, light_direction, 15.0f, getColor("darkgray"), getColor("lightgray"), getColor("lightgray"));
+	//world.addLight(spotLight);
 
 	//Cube base
 	mesh* cube = new mesh("../models/cube.obj", "../models/");
 	texture* colore_cubo = new image_texture("../models/grigio.jpg");
-	material* m_cube = new material(gray, gray, gray, 1.0f, 0.0f);
+	material* m_cube = new material(white, white, white, 1.0f, 0.0f);
 	auto instance_ptr_cubo = make_shared<instance>(cube, m_cube);
 	instance_ptr_cubo->scale(40.0, 1.0, 40.0);
 	instance_ptr_cubo->translate(0.0f, -0.5f, 0.0f);
@@ -614,11 +615,8 @@ string test(camera cam, hittable_list world) {
 	cam.samples_per_pixel = num_samples;
 	cam.initialize();
 
-	//cam.parallel_render(world, *spotLight);
-	//cam.parallel_render(world, *worldlight);
-	//cam.parallel_render(world, *worldlight, *occluder_ptr);
-	cam.parallel_render(world, *spotLight, *occluder_ptr);
-	//cam.parallel_render_ambient_occlusion(world, *occluder_ptr);
+	cam.parallel_render(world);
+	cam.parallel_render(world,*occluder_ptr);
 	SDL_RenderPresent(renderer);
 
 	string path = "../../screenshot/test/num_samples-" + to_string(num_samples) + "-min_amount-" + to_string(min_amount);
@@ -644,7 +642,7 @@ int main(int argc, char* argv[])
 	camera cam;
 
 	cam.aspect_ratio = 16.0f / 9.0f;
-	cam.image_width = 1280;
+	cam.image_width = 600;
 	cam.samples_per_pixel = 4;
 	cam.vfov = 20;
 

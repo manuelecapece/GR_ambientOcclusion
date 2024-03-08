@@ -2,9 +2,8 @@
 #define HITTABLE_LIST_H
 
 #include "hittable.h"
-#include "light.h"
 #include "vec3.h"
-#include "point_light.h"
+#include "light.h"
 
 #include <memory>
 #include <vector>
@@ -15,7 +14,7 @@ using std::make_shared;
 class hittable_list : public hittable {
 public:
   std::vector<shared_ptr<hittable>> objects;
-  vector<point_light*> lights;
+  vector<point_light*> v_light;
 
   hittable_list() {}
   hittable_list(shared_ptr<hittable> object) { add(object); }
@@ -26,8 +25,8 @@ public:
     objects.push_back(object);
   }
 
-  void add_lights(point_light* new_light) {
-      lights.push_back(new_light);
+  void addLight(point_light* new_light) {
+      v_light.push_back(new_light);
   }
 
   bool hit_shadow(const ray& r, interval ray_t) const override {

@@ -3,7 +3,6 @@
 #include <time.h>
 #include <algorithm>
 #include "camera.h"
-#include "light.h"
 #include "material.h"
 #include "object.h"
 #include "color.h"
@@ -11,7 +10,7 @@
 #include "math.h"
 #include "hittable.h"
 #include "ambient_occluder.h"
-#include "spot_light.h"
+#include "light.h"
 
 inline vec3 reflect(const vec3& i, const vec3& n)
 {
@@ -19,7 +18,7 @@ inline vec3 reflect(const vec3& i, const vec3& n)
 	return  2.0f * dot(i, n) * n - i; // i vettore uscente dalla normale
 }
 
-//Pong shading per point_light
+//Phong shading per pointLight
 color phong_shading(point_light& light, hit_record& hr, point3& camera_pos) {
 	color ambient(0.0f, 0.0f, 0.0f);
 	color diffuse(0.0f, 0.0f, 0.0f);
@@ -47,8 +46,8 @@ color phong_shading(point_light& light, hit_record& hr, point3& camera_pos) {
 		return ambient;
 }
 
-//Pong shading per spot_light
-color phong_shading_spot(spot_light& light, hit_record& hr, point3& camera_pos) {
+//Phong shading per spot_light
+color phong_shading(spot_light& light, hit_record& hr, point3& camera_pos) {
 	color ambient(0.0f, 0.0f, 0.0f);
 	color diffuse(0.0f, 0.0f, 0.0f);
 	color specular(0.0f, 0.0f, 0.0f);
@@ -84,11 +83,9 @@ color phong_shading_spot(spot_light& light, hit_record& hr, point3& camera_pos) 
 		return ambient;
 }
 
-
-
-color ambient_shading(light &light, hit_record &hr) {
+color ambient_shading(point_light& light, hit_record& hr) {
 	color ambient(0.0f, 0.0f, 0.0f);
-	
+
 	ambient = hr.m->ca * light.ambient;
 
 	return ambient;
@@ -114,7 +111,7 @@ color ambient_occlusion_shading(ambient_occluder& light, ray& r, hit_record& hr,
 	return L;
 }
 
-//Phong shading per poit_light + ambient occlusion
+//Phong shading per point_light + ambient occlusion
 color phong_shading(point_light& light, ambient_occluder& occluder, ray& r, hit_record& hr, hittable_list& world, point3& camera_pos) {
 	color ambient(0.0f, 0.0f, 0.0f);
 	color diffuse(0.0f, 0.0f, 0.0f);
@@ -142,7 +139,7 @@ color phong_shading(point_light& light, ambient_occluder& occluder, ray& r, hit_
 		return ambient;
 }
 
-//Phong shading per spot_light + ambient occlusion
+//Phong shading per spotLight + ambient occlusion
 color phong_shading(spot_light& light, ambient_occluder& occluder, ray& r, hit_record& hr, hittable_list& world, point3& camera_pos) {
 	color ambient(0.0f, 0.0f, 0.0f);
 	color diffuse(0.0f, 0.0f, 0.0f);

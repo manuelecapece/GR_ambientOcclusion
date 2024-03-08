@@ -159,7 +159,6 @@
     <ClInclude Include="hittable.h" />
     <ClInclude Include="multiJittered.h" />
     <ClInclude Include="point2.h" />
-    <ClInclude Include="point_light.h" />
     <ClInclude Include="pure_random.h" />
     <ClInclude Include="raster.h" />
     <ClInclude Include="ray.h" />
@@ -168,7 +167,6 @@
     <ClInclude Include="scene.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="sphere.h" />
-    <ClInclude Include="spot_light.h" />
     <ClInclude Include="texture.h" />
     <ClInclude Include="tiny_obj_loader.h" />
     <ClInclude Include="vec3.h" />
