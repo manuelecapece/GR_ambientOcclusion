@@ -573,7 +573,7 @@ string test(camera cam, hittable_list world) {
 	//Luce point_light
 	point3 light_position(0.0f, 6, 0.0f);
 	point_light* pointLight = new point_light(light_position, getColor("darkgray"), getColor("lightgray"), getColor("white"));
-	//world.addLight(pointLight);
+	world.addLight(pointLight);
 
 	//Luce spot_light
 	point3 light_position2(0, 10, 0);
@@ -615,7 +615,7 @@ string test(camera cam, hittable_list world) {
 	cam.samples_per_pixel = num_samples;
 	cam.initialize();
 
-	cam.parallel_render(world);
+	//cam.parallel_render(world);
 	cam.parallel_render(world,*occluder_ptr);
 	SDL_RenderPresent(renderer);
 

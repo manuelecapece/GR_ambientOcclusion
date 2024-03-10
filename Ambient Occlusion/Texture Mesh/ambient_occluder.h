@@ -49,12 +49,6 @@ bool ambient_occluder::in_shadow(ray& ray, hit_record& sr, hittable_list& world)
     }
     return false;
 
-    //interval t;
-    //for (const auto& object : world.objects) {
-    //    if (object->hit_shadow(ray, t))
-    //        return true;
-    //}
-    //return false;
 }
 
 color ambient_occluder::L(hit_record& sr, hittable_list& world) {
